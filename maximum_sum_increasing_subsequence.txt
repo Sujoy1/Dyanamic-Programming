@@ -1,0 +1,19 @@
+
+	public:
+	int maxSumIS(int arr[], int n)  
+	{  
+	    // Your code goes here
+	    int sum[n];
+	    sum[0]=arr[0];
+	    int i,j;
+	    for(i=1;i<n;i++)
+	    {
+	        sum[i]=arr[i];
+	      for(j=0;j<i;j++)
+	    {
+	        if(arr[i]>arr[j]&&sum[i]<sum[j]+arr[i])
+	        sum[i]=sum[j]+arr[i];
+	    }    
+	    }
+	    return *max_element(sum,sum+n);
+	}  

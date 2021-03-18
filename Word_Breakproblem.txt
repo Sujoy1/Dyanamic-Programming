@@ -1,0 +1,38 @@
+
+unordered_map<string,int> dp;
+
+int solve(string A, set<string> &B)
+{
+    string s=A;
+    int sz= s.length();
+    if(sz==0)
+    return 1;
+    if(dp[s])
+    return dp[s];
+    int i;
+    for(i=1;i<=sz;i++)
+    {
+        int f=0;
+        string ss = s.substr(0,i);
+        if(B.find(ss)!=B.end())
+        {
+            if(solve(s.substr(i,sz-i),B)==1)
+            return dp[s]=1;
+        }
+        
+    }
+    return dp[s]=-1;
+}
+
+
+int wordBreak(string A, vector<string> &B) {
+    //code here
+    set<string> s;
+    for(auto ele : B)
+    s.insert(ele);
+    int x = solve(A,s);
+    if(x==1)
+    return 1;
+    else
+    return 0;
+}

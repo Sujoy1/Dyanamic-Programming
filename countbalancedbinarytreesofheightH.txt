@@ -1,0 +1,12 @@
+
+  unordered_map<int,int> dp;
+  long long m= 1000000007;
+  
+    long long int countBT(int h) { 
+        // code here
+        if(h==0||h==1)
+        return 1;
+        if(dp[h])
+        return dp[h];
+        return dp[h]=((countBT(h-1)*((((2*countBT(h-2))%m)+countBT(h-1))%m))%m);
+    }

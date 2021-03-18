@@ -1,0 +1,13 @@
+int minremovals(int arr[],int n)
+{
+    if(n==1)
+    return 0;
+    sort(a,a+n);
+    int ans = INT_MAX;
+    for(int i=0;i<n;i++)
+    {
+        j = upper_bound(a+i,a+n,a[i]+k)-a-1;
+        ans =min(ans,j-i+1);
+    }
+    return ans;
+}

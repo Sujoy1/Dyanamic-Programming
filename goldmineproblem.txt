@@ -1,0 +1,29 @@
+  int maxGold(int p, int q, vector<vector<int>> M)
+    {
+        // code here
+        int n= M.size();
+        int m =M[0].size();
+        
+        int dp[m][n];
+        
+        memset(dp,0,sizeof(dp));
+        int i,j;
+        for(i=n-1;i>=0;i--)
+        {
+            for(j=0;j<m;j++)
+            {
+                int right  = (i==n-1) ? 0 : dp[j][i+1];
+                int right_up = (j==0||i==n-1) ? 0 : dp[j-1][i+1];
+                int right_down = (j==m-1||i==n-1) ? 0 : dp[j+1][i+1];
+                
+                dp[j][i] = M[j][i] + max(right,max(right_up,right_down));
+            }
+        }
+        int a = INT_MIN;
+        for(i=0;i<m;i++)
+        {
+            if(dp[i][0]>a)
+            a=dp[i][0];
+        }
+        return a;
+    }

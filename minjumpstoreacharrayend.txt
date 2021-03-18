@@ -1,0 +1,24 @@
+int minJumps(int arr[], int n){
+    // Y1our code here
+    int i,j;
+    int dp[n];
+    for(i=0;i<n;i++)
+    {
+        dp[i]=INT_MAX;
+    }
+    dp[0]=0;
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<i;j++)
+        {
+            if(dp[j]!=INT_MAX&&arr[j]+j>=i&&arr[j]!=0)
+            {
+                if(dp[j]+1<dp[i])
+                dp[i]=dp[j]+1;
+            }
+        }
+    }
+    if(dp[n-1]==INT_MAX)
+    return -1;
+    return dp[n-1];
+}

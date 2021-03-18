@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int kadene(vector<int> v,int n)
+{
+    int ma = INT_MIN;
+    int untill =0;
+    for(int i=0;i<n;i++)
+    {
+        untill += v[i];
+        if(untill>ma)
+        ma=untill;
+        if(untill<0)
+        untill=0;
+        
+    }
+    return ma;
+}
+
+int main() {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int r,c,i,j,k;
+	    int ma = INT_MIN;
+	    cin>>r>>c;
+	    int mat[r][c];
+	    for(i=0;i<r;i++)
+	    {
+	        for(j=0;j<c;j++)
+	        cin>>mat[i][j];
+	    }
+	    for(i=0;i<r;i++)
+	    {
+	        vector<int> ans(c);
+	        for(j=i;j<r;j++)
+	        {
+	            for(k=0;k<c;k++)
+	            ans[k] += mat[j][k];
+	            ma = max(ma,kadene(ans,c));
+	        }
+	        
+	    }
+	    cout<<ma<<endl;
+	}
+	return 0;
+	
+}

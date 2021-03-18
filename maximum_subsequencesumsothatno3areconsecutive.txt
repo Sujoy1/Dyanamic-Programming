@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int func(int arr[],int n)
+{
+    if(n<0)
+    return 0;
+    if(n==0)
+    return a[0];
+    if(n==1)
+    return a[0]+a[1];
+    else
+    return max(func(n-1),a[n]+func(n-2),a[n]+a[n-1]+a[n-3]);
+}
+int main()
+{
+    cin>>n;
+    int a[n+1],i;
+    for(i=0;i<n;i++)
+    cin>>a[i];
+    cout<<func(a,n-1)<<endl;  // This n-1    is important since we are considering for indices to the left of n-1
+}

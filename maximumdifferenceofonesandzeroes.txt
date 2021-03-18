@@ -1,0 +1,31 @@
+int maxSubstring(string S)
+	{
+	    // Your code goes here
+	    int arr[S.length()];
+	    int i;
+	    int n=  S.length();
+	    for(i=0;i<S.length();i++)
+	    {
+	        arr[i] = (S[i]=='1')?1:-1;
+	    }
+	    int maximum = 0;
+	    int ma1 = INT_MIN;
+	   
+	    for(i=0;i<n;i++)
+	    {
+	        maximum = max(arr[i],maximum+arr[i]);
+	        ma1 = max(maximum,ma1);
+	    }
+	    int minimum = 0;
+	    int ma2= INT_MAX;
+	   
+	    for(i=0;i<n;i++)
+	    {
+	        minimum = min(arr[i],minimum+arr[i]);
+	        ma2 = min(minimum,ma2);
+	    }
+	    if(max(ma1,abs(ma2))==S.length())
+	    return -1;
+	    else
+	    return max(ma1,abs(ma2));
+	}

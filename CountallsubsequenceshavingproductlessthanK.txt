@@ -1,0 +1,19 @@
+int productSubSeqCount(vector<int> A , int k)
+{
+    int n = A.size();
+    int dp[k+1][n+1];
+    int i,j;
+    memset(dp,0,sizeof(dp));
+    for(i=1;i<=k;i++)
+    {
+      for(j=1;j<=n;j++)
+    {
+        dp[i][j]= dp[i][j-1];
+        if(A[j-1]<=i&&A[j-1]>0)
+        {
+            dp[i][j] += dp[i/A[j-1]][j-1]+1;
+        }
+    }    
+    }
+    return dp[k][n];
+}

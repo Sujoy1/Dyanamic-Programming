@@ -1,0 +1,56 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+
+int Algo(vector<int> v,int n)
+{
+    unordered_map<int,int> dp;
+    int sum=0;
+    int ma = INT_MIN;
+    for(int i=0;i<n;i++)
+    {
+        sum += v[i];
+        if(dp[sum])
+        {
+            ma =max(ma,i-dp[sum]+1); 
+        }
+        else
+        dp[sum]=i;
+    }
+    return ma;
+}
+
+int main() {
+	//code
+	   int r,c,i,j,k,start,end1;
+	    int ma = INT_MIN;
+	    cin>>r>>c;
+	    int mat[r][c];
+	    for(i=0;i<r;i++)
+	    {
+	        for(j=0;j<c;j++)
+	        cin>>mat[i][j];
+	    }
+	    int height = INT_MIN;
+	    for(i=0;i<r;i++)
+	    {
+	        vector<int> ans(c);
+	        for(j=i;j<r;j++)
+	        {
+	            for(k=0;k<c;k++)
+	            ans[k] += mat[j][k];
+	            if(ma <=Algo(ans,c)&&height<=j-i+1)
+	             {
+	               start=i;
+                   end1=j;
+	              ma = Algo(ans,c);
+	              height = j-i+1;
+	             }
+	        }
+	        
+	    }
+	    cout<<start<<' '<<end1<<endl;
+	    cout<<ma*(end1-start+1)<<endl;
+
+	return 0;
+	
+}

@@ -1,0 +1,20 @@
+long long countWays(int n1, int k1){
+        long long n= n1;
+        long long k= k1;
+        // code here
+        long long m =1000000007;
+        if(n==0)
+        return 0;
+        if(n==1)
+        return k;
+        long long same = k;
+        long long different = k*(k-1);
+        for(long long i=3;i<=n;i++)
+        {
+            long long prev = different%m;
+            different  = (((same+different)%m)*((k-1)%m))%m;
+            same = prev;
+        }
+        long long ewault = (same+different)%m;
+        return ewault;
+    }
